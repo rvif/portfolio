@@ -11,8 +11,8 @@ export function Navbar({ theme, setTheme, scrollToSection }) {
   return (
     <header className="fixed top-0 w-full px-4 py-4 z-50">
       <nav className="mx-auto max-w-2xl rounded-full border bg-background/95 p-2 shadow-lg backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="flex items-center justify-between px-4">
-          <div className="flex lg:flex-1">
+        <div className={cn("flex items-center px-4", "layout-above-410")}>
+          <div className="show-above-410">
             <a
               href="#"
               className="font-mono text-2xl font-semibold tracking-tighter hover:text-primary transition-colors"

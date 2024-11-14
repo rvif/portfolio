@@ -8,6 +8,8 @@ module.exports = {
       padding: "2rem",
       screens: {
         "2xl": "1400px",
+        custom: "1100px",
+        // xxs: "410px", doesnt work for some reason
       },
     },
     extend: {

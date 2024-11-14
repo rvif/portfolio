@@ -77,19 +77,30 @@ export function Hero() {
                   onClick={handleMailClick}
                   className="w-full group relative"
                 >
-                  <div className="flex items-center justify-between rounded-lg border p-4 transition-colors hover:bg-muted">
+                  <div
+                    className={cn(
+                      "flex items-center justify-between rounded-lg border p-4 transition-colors hover:bg-muted",
+                      mailCopied &&
+                        !window.matchMedia("(min-width: 1100px)").matches &&
+                        "border-green-500"
+                    )}
+                  >
                     <div className="flex items-center gap-3">
                       <Mail className="h-5 w-5" />
-                      <span>ravijeetsharma180@gmail.com</span>
+                      <span className="text-sm sm:text-base">
+                        ravijeetsharma180@gmail.com
+                      </span>
                     </div>
-                    <span
-                      className={cn(
-                        "transition-opacity duration-300",
-                        mailCopied ? "opacity-100" : "opacity-0"
-                      )}
-                    >
-                      <Check className="h-5 w-5 text-green-500" />
-                    </span>
+                    {window.matchMedia("(min-width: 1100px)").matches && (
+                      <span
+                        className={cn(
+                          "transition-opacity duration-300",
+                          mailCopied ? "opacity-100" : "opacity-0"
+                        )}
+                      >
+                        <Check className="h-5 w-5 text-green-500" />
+                      </span>
+                    )}
                   </div>
                 </button>
 
@@ -97,19 +108,28 @@ export function Hero() {
                   onClick={handleDownload}
                   className="w-full group relative"
                 >
-                  <div className="flex items-center justify-between rounded-lg border p-4 transition-colors hover:bg-muted">
+                  <div
+                    className={cn(
+                      "flex items-center justify-between rounded-lg border p-4 transition-colors hover:bg-muted",
+                      downloadClicked &&
+                        !window.matchMedia("(min-width: 1100px)").matches &&
+                        "border-green-500"
+                    )}
+                  >
                     <div className="flex items-center gap-3">
                       <Download className="h-5 w-5" />
                       <span>Download Resume</span>
                     </div>
-                    <span
-                      className={cn(
-                        "transition-opacity duration-300",
-                        downloadClicked ? "opacity-100" : "opacity-0"
-                      )}
-                    >
-                      <Check className="h-5 w-5 text-green-500" />
-                    </span>
+                    {window.matchMedia("(min-width: 1100px)").matches && (
+                      <span
+                        className={cn(
+                          "transition-opacity duration-300",
+                          downloadClicked ? "opacity-100" : "opacity-0"
+                        )}
+                      >
+                        <Check className="h-5 w-5 text-green-500" />
+                      </span>
+                    )}
                   </div>
                 </button>
               </div>

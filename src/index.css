@@ -57,3 +57,21 @@
     @apply bg-background text-foreground;
   }
 }
+
+@media (min-width: 410px) {
+  .show-above-410 {
+    display: block;
+  }
+  .layout-above-410 {
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 409px) {
+  .show-above-410 {
+    display: none;
+  }
+  .layout-above-410 {
+    justify-content: center;
+  }
+}
