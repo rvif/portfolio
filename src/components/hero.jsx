@@ -87,9 +87,7 @@ export function Hero() {
                   >
                     <div className="flex items-center gap-3">
                       <Mail className="h-5 w-5" />
-                      <span className="text-sm sm:text-base">
-                        ravijeetsharma180@gmail.com
-                      </span>
+                      <span className="text-base">Copy Email</span>
                     </div>
                     {window.matchMedia("(min-width: 1100px)").matches && (
                       <span
