@@ -27,10 +27,9 @@ function App() {
         setTheme={setTheme}
         scrollToSection={scrollToSection}
       />
-      <div className="min-h-screen">
-        <Hero />
-        <InfiniteCarousel />
-      </div>
+
+      <Hero />
+      <InfiniteCarousel />
       <Projects />
       <Footer />
     </>
