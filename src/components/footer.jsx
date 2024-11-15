@@ -6,17 +6,7 @@ import { incrementVisitCount } from "@/lib/counter";
 export function Footer() {
   const currentYear = new Date().getFullYear();
   const [currentTime, setCurrentTime] = useState(new Date());
-  const [visitCount, setVisitCount] = useState(0);
-
-  // Initialize visit counter
-  useEffect(() => {
-    const updateVisitCount = async () => {
-      const count = await incrementVisitCount();
-      setVisitCount(count);
-    };
-
-    updateVisitCount();
-  }, []);
+  const [visitCount, setVisitCount] = useState("0");
 
   // Update time every second
   useEffect(() => {
@@ -25,6 +15,19 @@ export function Footer() {
     }, 1000);
 
     return () => clearInterval(timer);
+  }, []);
+
+  // Handle visit counter
+  useEffect(() => {
+    const updateCount = async () => {
+      const count = await incrementVisitCount();
+      setVisitCount(count.toLocaleString());
+    };
+
+    updateCount();
+    // Update count every 5 minutes
+    const interval = setInterval(updateCount, 300000);
+    return () => clearInterval(interval);
   }, []);
 
   // Format time in IST
@@ -82,12 +85,12 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Right side - Location, Time, and Go to Top */}
+          {/* Right side - Modified Suspense wrapper */}
           <div className="flex flex-col items-center gap-4 md:items-end">
             <div className="flex flex-col items-end gap-1 text-sm text-muted-foreground">
               <span>Mumbai, India</span>
               <span>{timeString} IST</span>
-              <span>Total Visits: {visitCount.toLocaleString()}</span>
+              <span>Total Visits: {visitCount}</span>
             </div>
             <Button
               variant="outline"
