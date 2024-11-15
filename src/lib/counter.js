@@ -1,8 +1,8 @@
-const SITE_ID = "rvif-portfolio.netlify.app";
+const SITE_ID = "portfolio-rvif.netlify.app";
 
 export const incrementVisitCount = async () => {
   try {
-    const response = await fetch(`https://hits.sh/${SITE_ID}.json`);
+    const response = await fetch(`https://hits.sh/${SITE_ID}/hits/`);
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
