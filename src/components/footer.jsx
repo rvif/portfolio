@@ -1,12 +1,12 @@
 import { Github, Linkedin, Mail, ArrowUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
-import { incrementVisitCount } from "@/lib/counter";
+import { incrementCount } from "@/lib/counter";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
   const [currentTime, setCurrentTime] = useState(new Date());
-  const [visitCount, setVisitCount] = useState("0");
+  const [visitCount, setVisitCount] = useState(null);
 
   // Update time every second
   useEffect(() => {
@@ -17,17 +17,23 @@ export function Footer() {
     return () => clearInterval(timer);
   }, []);
 
-  // Handle visit counter
   useEffect(() => {
-    const updateCount = async () => {
-      const count = await incrementVisitCount();
-      setVisitCount(count.toLocaleString());
+    const initializeCounter = async () => {
+      try {
+        console.log("Initializing counter...");
+        const response = await incrementCount();
+        console.log("Counter response:", response);
+
+        if (response && response.Count) {
+          setVisitCount(response.Count);
+        }
+      } catch (error) {
+        console.error("Error initializing counter:", error);
+        setVisitCount(0);
+      }
     };
 
-    updateCount();
-    // Update count every 5 minutes
-    const interval = setInterval(updateCount, 300000);
-    return () => clearInterval(interval);
+    initializeCounter();
   }, []);
 
   // Format time in IST
@@ -85,12 +91,16 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Right side - Modified Suspense wrapper */}
+          {/* Right side */}
           <div className="flex flex-col items-center gap-4 md:items-end">
-            <div className="flex flex-col items-end gap-1 text-sm text-muted-foreground">
+            <div className="flex flex-col items-center text-center md:items-end md:text-right gap-1 text-sm text-muted-foreground">
               <span>Mumbai, India</span>
               <span>{timeString} IST</span>
-              <span>Total Visits: {visitCount}</span>
+              <span>
+                {visitCount !== null
+                  ? `Total Visits: ${visitCount.toLocaleString()}`
+                  : "Loading..."}
+              </span>
             </div>
             <Button
               variant="outline"

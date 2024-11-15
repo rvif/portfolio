@@ -17,6 +17,7 @@
     "@vitejs/plugin-react": "^4.3.3",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
+    "counterapi": "^1.97.0",
     "framer-motion": "^11.11.17",
     "lucide-react": "^0.344.0",
     "react": "^18.2.0",
