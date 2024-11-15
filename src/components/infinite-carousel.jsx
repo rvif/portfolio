@@ -136,15 +136,15 @@ function SkillIcon({ iconGray, iconColor }) {
 
 export function InfiniteCarousel() {
   return (
-    <section className="w-full overflow-hidden select-none">
-      <div className="max-w-7xl mx-auto px-4">
-        <h2 className="text-2xl font-medium tracking-tight mb-8">
+    <section className="w-full overflow-hidden select-none py-0">
+      <div className="max-w-7xl mx-auto px-4 mb-8">
+        <h2 className="text-2xl font-medium tracking-tight">
           skills & technologies i use
         </h2>
       </div>
 
-      <div className="relative">
-        <div className="flex flex-col gap-16">
+      <div className="relative w-full">
+        <div className="flex flex-col gap-16 relative">
           {/* Row 1 */}
           <div className="relative flex overflow-hidden">
             <div className="flex animate-marquee whitespace-nowrap">
@@ -286,8 +286,8 @@ export function InfiniteCarousel() {
           </div>
 
           {/* Gradient Overlays */}
-          <div className="pointer-events-none absolute inset-y-0 left-0 w-1/6 bg-gradient-to-r from-background to-transparent" />
-          <div className="pointer-events-none absolute inset-y-0 right-0 w-1/6 bg-gradient-to-l from-background to-transparent" />
+          <div className="pointer-events-none fixed inset-y-0 left-0 w-1/6 bg-gradient-to-r from-background to-transparent" />
+          <div className="pointer-events-none fixed inset-y-0 right-0 w-1/6 bg-gradient-to-l from-background to-transparent" />
         </div>
       </div>
     </section>

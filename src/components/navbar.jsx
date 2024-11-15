@@ -14,7 +14,11 @@ export function Navbar({ theme, setTheme, scrollToSection }) {
         <div className={cn("flex items-center px-4", "layout-above-410")}>
           <div className="show-above-410">
             <a
-              href="#"
+              href="/"
+              onClick={(e) => {
+                e.preventDefault();
+                window.location.reload();
+              }}
               className="font-mono text-2xl font-semibold tracking-tighter hover:text-primary transition-colors"
             >
               rvif
