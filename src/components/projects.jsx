@@ -23,7 +23,7 @@ const projects = [
 
 export function Projects() {
   return (
-    <section id="projects" className="w-full py-16">
+    <section id="projects" className="w-full pt-4 pb-16">
       <div className="mx-auto max-w-2xl lg:max-w-4xl px-4">
         <div className="lg:pl-0">
           <motion.h2
