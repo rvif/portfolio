@@ -136,17 +136,17 @@ function SkillIcon({ iconGray, iconColor }) {
 
 export function InfiniteCarousel() {
   return (
-    <section className="w-full py-4">
+    <section className="w-full py-16">
       <div className="max-w-7xl mx-auto px-4 mb-8">
         <h2 className="text-2xl font-medium tracking-tight">
           skills & technologies i use
         </h2>
       </div>
 
-      <div className="w-full h-[400px] relative overflow-hidden">
-        <div className="flex flex-col gap-16 absolute inset-0">
+      <div className="relative w-full" style={{ height: "320px" }}>
+        <div className="flex flex-col gap-12 absolute inset-0">
           {/* Row 1 */}
-          <div className="relative flex overflow-hidden">
+          <div className="relative flex overflow-hidden h-16">
             <div className="flex animate-marquee whitespace-nowrap">
               {[
                 ...skills.row1,
@@ -181,7 +181,7 @@ export function InfiniteCarousel() {
           </div>
 
           {/* Row 2 */}
-          <div className="relative flex overflow-hidden">
+          <div className="relative flex overflow-hidden h-16">
             <div className="flex animate-marquee-reverse whitespace-nowrap">
               {[
                 ...skills.row2,
@@ -216,7 +216,7 @@ export function InfiniteCarousel() {
           </div>
 
           {/* Row 3 */}
-          <div className="relative flex overflow-hidden">
+          <div className="relative flex overflow-hidden h-16">
             <div className="flex animate-marquee whitespace-nowrap">
               {[
                 ...skills.row3,
@@ -251,7 +251,7 @@ export function InfiniteCarousel() {
           </div>
 
           {/* Row 4 */}
-          <div className="relative flex overflow-hidden">
+          <div className="relative flex overflow-hidden h-16">
             <div className="flex animate-marquee-reverse whitespace-nowrap">
               {[
                 ...skills.row4,
