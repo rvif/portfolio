@@ -2,6 +2,7 @@ import { useTheme } from "@/components/theme-provider";
 import { Navbar } from "@/components/navbar";
 import { Hero } from "@/components/hero";
 import { Projects } from "@/components/projects";
+import { InfiniteCarousel } from "@/components/infinite-carousel";
 import { Footer } from "@/components/footer";
 
 function App() {
@@ -26,7 +27,10 @@ function App() {
         setTheme={setTheme}
         scrollToSection={scrollToSection}
       />
-      <Hero />
+      <div className="min-h-screen">
+        <Hero />
+        <InfiniteCarousel />
+      </div>
       <Projects />
       <Footer />
     </>
