@@ -5,8 +5,8 @@ import gsap from "gsap";
 export function CustomCursor() {
   const cursorRef = useRef(null);
   const cursorBorderRef = useRef(null);
-  const [isVisible, setIsVisible] = React.useState(true);
   const [isMobile, setIsMobile] = React.useState(false);
+  const [isVisible, setIsVisible] = React.useState(false);
   const timeoutRef = useRef(null);
 
   useEffect(() => {
@@ -15,6 +15,7 @@ export function CustomCursor() {
       const isIOS = /iphone|ipad|ipod/.test(userAgent);
       const isAndroid = /android/.test(userAgent);
       setIsMobile(isIOS || isAndroid);
+      setIsVisible(!isIOS && !isAndroid);
     };
 
     checkMobile();
