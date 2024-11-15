@@ -75,7 +75,20 @@ module.exports = {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      cursor: {
+        none: "none",
+      },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [
+    require("tailwindcss-animate"),
+    function ({ addUtilities }) {
+      const newUtilities = {
+        ".cursor-hover-scale": {
+          transform: "scale(1.5) !important",
+        },
+      };
+      addUtilities(newUtilities, ["hover"]);
+    },
+  ],
 };

@@ -75,3 +75,13 @@
     justify-content: center;
   }
 }
+
+@layer base {
+  * {
+    cursor: none !important;
+  }
+
+  .cursor-visible {
+    cursor: auto !important;
+  }
+}

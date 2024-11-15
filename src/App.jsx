@@ -4,6 +4,7 @@ import { Hero } from "@/components/hero";
 import { Projects } from "@/components/projects";
 import { InfiniteCarousel } from "@/components/infinite-carousel";
 import { Footer } from "@/components/footer";
+import { CustomCursor } from "@/components/custom-cursor";
 
 function App() {
   const { theme, setTheme } = useTheme();
@@ -22,6 +23,7 @@ function App() {
 
   return (
     <>
+      <CustomCursor />
       <Navbar
         theme={theme}
         setTheme={setTheme}
