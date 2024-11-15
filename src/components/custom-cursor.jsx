@@ -5,10 +5,26 @@ import gsap from "gsap";
 export function CustomCursor() {
   const cursorRef = useRef(null);
   const cursorBorderRef = useRef(null);
-  const [isVisible, setIsVisible] = React.useState(false);
+  const [isVisible, setIsVisible] = React.useState(true);
+  const [isMobile, setIsMobile] = React.useState(false);
   const timeoutRef = useRef(null);
 
   useEffect(() => {
+    const checkMobile = () => {
+      const userAgent = navigator.userAgent.toLowerCase();
+      const isIOS = /iphone|ipad|ipod/.test(userAgent);
+      const isAndroid = /android/.test(userAgent);
+      setIsMobile(isIOS || isAndroid);
+    };
+
+    checkMobile();
+
+    return () => {};
+  }, []);
+
+  useEffect(() => {
+    if (isMobile) return;
+
     const cursor = cursorRef.current;
     const cursorBorder = cursorBorderRef.current;
     let mouseX = 0;
@@ -16,9 +32,14 @@ export function CustomCursor() {
     let lastX = 0;
     let lastY = 0;
 
+    const initX = window.innerWidth / 2;
+    const initY = window.innerHeight / 2;
+
     gsap.set(cursor, {
       xPercent: -50,
       yPercent: -50,
+      x: initX,
+      y: initY,
       scale: 1,
       transformOrigin: "center center",
     });
@@ -112,7 +133,8 @@ export function CustomCursor() {
     };
 
     const handleMouseLeave = () => {
-      setIsVisible(false);
+      // Don't hide cursor on mouse leave
+      // setIsVisible(false);
     };
 
     document.addEventListener("mousemove", handleMouseMove);
@@ -127,7 +149,9 @@ export function CustomCursor() {
       document.removeEventListener("mouseup", handleMouseUp);
       document.removeEventListener("mouseleave", handleMouseLeave);
     };
-  }, []);
+  }, [isMobile]);
+
+  if (isMobile) return null;
 
   return (
     <div
