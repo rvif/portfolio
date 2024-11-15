@@ -1,10 +1,22 @@
 import { Github, Linkedin, Mail, ArrowUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
+import { incrementVisitCount } from "@/lib/counter";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
   const [currentTime, setCurrentTime] = useState(new Date());
+  const [visitCount, setVisitCount] = useState(0);
+
+  // Initialize visit counter
+  useEffect(() => {
+    const updateVisitCount = async () => {
+      const count = await incrementVisitCount();
+      setVisitCount(count);
+    };
+
+    updateVisitCount();
+  }, []);
 
   // Update time every second
   useEffect(() => {
@@ -75,6 +87,7 @@ export function Footer() {
             <div className="flex flex-col items-end gap-1 text-sm text-muted-foreground">
               <span>Mumbai, India</span>
               <span>{timeString} IST</span>
+              <span>Total Visits: {visitCount.toLocaleString()}</span>
             </div>
             <Button
               variant="outline"
