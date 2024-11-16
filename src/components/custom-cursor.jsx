@@ -135,7 +135,7 @@ export function CustomCursor() {
 
     const handleMouseLeave = () => {
       // Don't hide cursor on mouse leave
-      // setIsVisible(false);
+      setIsVisible(false);
     };
 
     document.addEventListener("mousemove", handleMouseMove);

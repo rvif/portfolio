@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { cn } from "@/lib/utils";
 
 const skills = {
@@ -116,17 +117,25 @@ const skills = {
   ],
 };
 
-function SkillIcon({ iconGray, iconColor }) {
+function SkillIcon({ iconGray, iconColor, isActive, onClick }) {
   return (
-    <div className="group px-8">
-      <div className="relative">
-        <i className={cn(iconGray, "text-4xl transition-all duration-300")} />
+    <div className="px-8" onClick={onClick}>
+      <div className="relative cursor-pointer">
+        <i
+          className={cn(
+            iconGray,
+            "text-4xl",
+            isActive ? "opacity-0" : "opacity-100",
+            "transition-opacity duration-150"
+          )}
+        />
         <i
           className={cn(
             iconColor,
-            "text-4xl transition-all duration-300",
-            "opacity-0 group-hover:opacity-100",
-            "absolute top-0 left-0"
+            "text-4xl",
+            isActive ? "opacity-100" : "opacity-0",
+            "absolute top-0 left-0",
+            "transition-opacity duration-150"
           )}
         />
       </div>
@@ -135,6 +144,27 @@ function SkillIcon({ iconGray, iconColor }) {
 }
 
 export function InfiniteCarousel() {
+  const [activeIcon, setActiveIcon] = useState(null);
+
+  const handleIconClick = (index) => {
+    setActiveIcon((prev) => (prev === index ? null : index));
+  };
+
+  const renderIcons = (skillsRow, rowIndex) => {
+    return skillsRow.map((skill, idx) => {
+      const iconIndex = rowIndex * skillsRow.length + idx;
+      return (
+        <SkillIcon
+          key={iconIndex}
+          iconGray={skill.iconGray}
+          iconColor={skill.iconColor}
+          isActive={activeIcon === iconIndex}
+          onClick={() => handleIconClick(iconIndex)}
+        />
+      );
+    });
+  };
+
   return (
     <section className="w-full py-16">
       <div className="max-w-7xl mx-auto px-4 mb-8">
@@ -148,140 +178,116 @@ export function InfiniteCarousel() {
           {/* Row 1 */}
           <div className="relative flex overflow-hidden h-16">
             <div className="flex animate-marquee whitespace-nowrap">
-              {[
-                ...skills.row1,
-                ...skills.row1,
-                ...skills.row1,
-                ...skills.row1,
-              ].map((skill, idx) => (
-                <SkillIcon
-                  key={idx}
-                  iconGray={skill.iconGray}
-                  iconColor={skill.iconColor}
-                />
-              ))}
+              {renderIcons(
+                [
+                  ...skills.row1,
+                  ...skills.row1,
+                  ...skills.row1,
+                  ...skills.row1,
+                ],
+                0
+              )}
             </div>
             <div
               aria-hidden="true"
               className="flex animate-marquee2 whitespace-nowrap absolute top-0"
             >
-              {[
-                ...skills.row1,
-                ...skills.row1,
-                ...skills.row1,
-                ...skills.row1,
-              ].map((skill, idx) => (
-                <SkillIcon
-                  key={idx}
-                  iconGray={skill.iconGray}
-                  iconColor={skill.iconColor}
-                />
-              ))}
+              {renderIcons(
+                [
+                  ...skills.row1,
+                  ...skills.row1,
+                  ...skills.row1,
+                  ...skills.row1,
+                ],
+                0
+              )}
             </div>
           </div>
 
           {/* Row 2 */}
           <div className="relative flex overflow-hidden h-16">
             <div className="flex animate-marquee-reverse whitespace-nowrap">
-              {[
-                ...skills.row2,
-                ...skills.row2,
-                ...skills.row2,
-                ...skills.row2,
-              ].map((skill, idx) => (
-                <SkillIcon
-                  key={idx}
-                  iconGray={skill.iconGray}
-                  iconColor={skill.iconColor}
-                />
-              ))}
+              {renderIcons(
+                [
+                  ...skills.row2,
+                  ...skills.row2,
+                  ...skills.row2,
+                  ...skills.row2,
+                ],
+                1
+              )}
             </div>
             <div
               aria-hidden="true"
               className="flex animate-marquee2-reverse whitespace-nowrap absolute top-0"
             >
-              {[
-                ...skills.row2,
-                ...skills.row2,
-                ...skills.row2,
-                ...skills.row2,
-              ].map((skill, idx) => (
-                <SkillIcon
-                  key={idx}
-                  iconGray={skill.iconGray}
-                  iconColor={skill.iconColor}
-                />
-              ))}
+              {renderIcons(
+                [
+                  ...skills.row2,
+                  ...skills.row2,
+                  ...skills.row2,
+                  ...skills.row2,
+                ],
+                1
+              )}
             </div>
           </div>
 
           {/* Row 3 */}
           <div className="relative flex overflow-hidden h-16">
             <div className="flex animate-marquee whitespace-nowrap">
-              {[
-                ...skills.row3,
-                ...skills.row3,
-                ...skills.row3,
-                ...skills.row3,
-              ].map((skill, idx) => (
-                <SkillIcon
-                  key={idx}
-                  iconGray={skill.iconGray}
-                  iconColor={skill.iconColor}
-                />
-              ))}
+              {renderIcons(
+                [
+                  ...skills.row3,
+                  ...skills.row3,
+                  ...skills.row3,
+                  ...skills.row3,
+                ],
+                2
+              )}
             </div>
             <div
               aria-hidden="true"
               className="flex animate-marquee2 whitespace-nowrap absolute top-0"
             >
-              {[
-                ...skills.row3,
-                ...skills.row3,
-                ...skills.row3,
-                ...skills.row3,
-              ].map((skill, idx) => (
-                <SkillIcon
-                  key={idx}
-                  iconGray={skill.iconGray}
-                  iconColor={skill.iconColor}
-                />
-              ))}
+              {renderIcons(
+                [
+                  ...skills.row3,
+                  ...skills.row3,
+                  ...skills.row3,
+                  ...skills.row3,
+                ],
+                2
+              )}
             </div>
           </div>
 
           {/* Row 4 */}
           <div className="relative flex overflow-hidden h-16">
             <div className="flex animate-marquee-reverse whitespace-nowrap">
-              {[
-                ...skills.row4,
-                ...skills.row4,
-                ...skills.row4,
-                ...skills.row4,
-              ].map((skill, idx) => (
-                <SkillIcon
-                  key={idx}
-                  iconGray={skill.iconGray}
-                  iconColor={skill.iconColor}
-                />
-              ))}
+              {renderIcons(
+                [
+                  ...skills.row4,
+                  ...skills.row4,
+                  ...skills.row4,
+                  ...skills.row4,
+                ],
+                3
+              )}
             </div>
             <div
               aria-hidden="true"
               className="flex animate-marquee2-reverse whitespace-nowrap absolute top-0"
             >
-              {[
-                ...skills.row4,
-                ...skills.row4,
-                ...skills.row4,
-                ...skills.row4,
-              ].map((skill, idx) => (
-                <SkillIcon
-                  key={idx}
-                  iconGray={skill.iconGray}
-                  iconColor={skill.iconColor}
-                />
-              ))}
+              {renderIcons(
+                [
+                  ...skills.row4,
+                  ...skills.row4,
+                  ...skills.row4,
+                  ...skills.row4,
+                ],
+                3
+              )}
             </div>
           </div>
 
