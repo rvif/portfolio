@@ -20,25 +20,25 @@ export const incrementCount = async () => {
   });
 };
 
-// export const resetVisitCount = async () => {
-//   try {
-//     // First get the current count
-//     const currentCount = await counter.get(NAMESPACE, KEY);
-//     console.log("Current count:", currentCount);
+export const resetVisitCount = async () => {
+  try {
+    // First get the current count
+    const currentCount = await counter.get(NAMESPACE, KEY);
+    console.log("Current count:", currentCount);
 
-//     // looping to decrease the count one by one
-//     let response = currentCount;
-//     while (response.Count > 0) {
-//       response = await counter.down(NAMESPACE, KEY);
-//       console.log("Current count after decrease:", response.Count);
-//     }
+    // looping to decrease the count one by one
+    let response = currentCount;
+    while (response.Count > 0) {
+      response = await counter.down(NAMESPACE, KEY);
+      console.log("Current count after decrease:", response.Count);
+    }
 
-//     // final count
-//     const finalCount = await counter.get(NAMESPACE, KEY);
-//     console.log("Final count:", finalCount);
-//     return finalCount;
-//   } catch (error) {
-//     console.error("Error resetting counter:", error);
-//     throw error;
-//   }
-// };
+    // final count
+    const finalCount = await counter.get(NAMESPACE, KEY);
+    console.log("Final count:", finalCount);
+    return finalCount;
+  } catch (error) {
+    console.error("Error resetting counter:", error);
+    throw error;
+  }
+};
